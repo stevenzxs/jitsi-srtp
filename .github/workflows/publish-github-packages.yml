@@ -30,6 +30,8 @@ jobs:
       - name: Publish jitsi-srtp-gm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: >-
-          mvn --batch-mode --no-transfer-progress -DskipTests deploy
-          -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/stevenzxs/jitsi-srtp
+        run: |
+          mvn --batch-mode --no-transfer-progress -DskipTests package
+          mvn --batch-mode --no-transfer-progress -DskipTests \
+            org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy \
+            -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/stevenzxs/jitsi-srtp
