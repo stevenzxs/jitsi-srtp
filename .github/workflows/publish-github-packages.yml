@@ -36,8 +36,8 @@ jobs:
         run: >-
           mvn --batch-mode --no-transfer-progress
           org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy-file
-          -Dfile=target/jitsi-srtp-gm-1.1.23-gm1.jar
+          -Dfile=target/jitsi-srtp-gm-1.1.23-gm2.jar
           -DpomFile=pom.xml
-          -Dsources=target/jitsi-srtp-gm-1.1.23-gm1-sources.jar
+          -Dsources=target/jitsi-srtp-gm-1.1.23-gm2-sources.jar
           -DrepositoryId=github
           -Durl=https://maven.pkg.github.com/stevenzxs/jitsi-srtp

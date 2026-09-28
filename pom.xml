@@ -6,7 +6,7 @@
 
     <groupId>org.stevenzxs.jitsi</groupId>
     <artifactId>jitsi-srtp-gm</artifactId>
-    <version>1.1.23-gm1</version>
+    <version>1.1.23-gm2</version>
     <packaging>bundle</packaging>
 
     <name>Jitsi Secure RTP implementation</name>
@@ -44,7 +44,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.6.2</junit.version>
-        <bouncycastle.version>1.66</bouncycastle.version>
+        <bouncycastle.version>1.83</bouncycastle.version>
     </properties>
 
     <profiles>
@@ -344,7 +344,7 @@
         </dependency>
         <dependency>
             <groupId>org.bouncycastle</groupId>
-            <artifactId>bcprov-jdk15on</artifactId>
+            <artifactId>bcprov-jdk18on</artifactId>
             <version>${bouncycastle.version}</version>
         </dependency>
         <dependency>
