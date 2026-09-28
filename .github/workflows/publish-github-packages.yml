@@ -24,7 +24,7 @@ jobs:
           java-version: '17'
           server-id: github
           server-username: GITHUB_ACTOR
-          server-password: GITHUB_TOKEN
+          server-password: GH_PACKAGES_TOKEN
           cache: maven
 
       - name: Build jitsi-srtp-gm
@@ -32,7 +32,7 @@ jobs:
 
       - name: Publish jitsi-srtp-gm
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PACKAGES_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
         run: >-
           mvn --batch-mode --no-transfer-progress
           org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy
