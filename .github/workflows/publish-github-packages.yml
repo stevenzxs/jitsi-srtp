@@ -2,6 +2,9 @@ name: Publish GM artifact to GitHub Packages
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - gm-sm4-srtp
 
 permissions:
   contents: read
