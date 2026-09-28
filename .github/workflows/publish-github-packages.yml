@@ -28,7 +28,7 @@ jobs:
           cache: maven
 
       - name: Build jitsi-srtp-gm
-        run: mvn --batch-mode --no-transfer-progress -DskipTests -Dcheckstyle.skip=true package
+        run: mvn --batch-mode --no-transfer-progress -DskipTests -Dcheckstyle.skip=true -DbuildNativeLib=true package
 
       - name: Publish jitsi-srtp-gm
         env:

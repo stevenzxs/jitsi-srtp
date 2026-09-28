@@ -39,7 +39,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build and test with Maven
-        run: mvn -B verify -DperformRelease=true -Pcoverage
+        run: mvn -B verify -DperformRelease=true -Pcoverage -DbuildNativeLib=true
 
       - name: Upload coverage report
         if: matrix.java == env.RELEASE_JAVA_VERSION
