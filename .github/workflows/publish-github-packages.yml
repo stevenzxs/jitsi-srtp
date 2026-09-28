@@ -35,5 +35,9 @@ jobs:
           GH_PACKAGES_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
         run: >-
           mvn --batch-mode --no-transfer-progress
-          org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy
-          -DaltDeploymentRepository=github::default::https://maven.pkg.github.com/stevenzxs/jitsi-srtp
+          org.apache.maven.plugins:maven-deploy-plugin:2.8.2:deploy-file
+          -Dfile=target/jitsi-srtp-gm-1.1.23-gm1.jar
+          -DpomFile=pom.xml
+          -Dsources=target/jitsi-srtp-gm-1.1.23-gm1-sources.jar
+          -DrepositoryId=github
+          -Durl=https://maven.pkg.github.com/stevenzxs/jitsi-srtp
