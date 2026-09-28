@@ -351,7 +351,8 @@ public class SrtcpCryptoContext
 
         int indexEflag;
 
-        if (policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION)
+        if (policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION
+                || policy.getEncType() == SrtpPolicy.SM4GCM_ENCRYPTION)
         {
             /* For GCM the index is after the tag, rather than before it. */
             indexEflag = SrtcpPacketUtils.getIndex(pkt, 0);
@@ -406,7 +407,8 @@ public class SrtcpCryptoContext
             {
                 processPacketAesCm(pkt, index);
             }
-            else if (policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION)
+            else if (policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION
+                    || policy.getEncType() == SrtpPolicy.SM4GCM_ENCRYPTION)
             {
                 pkt.shrink(4); /* Index is processed separately as part of AAD. */
                 err = processPacketAesGcm(pkt, index, false, false);
@@ -422,7 +424,8 @@ public class SrtcpCryptoContext
                 processPacketAesF8(pkt, index);
             }
         }
-        else if (policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION)
+        else if (policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION
+                || policy.getEncType() == SrtpPolicy.SM4GCM_ENCRYPTION)
         {
             err = processPacketAesGcm(pkt, index, true, false);
             if (err != SrtpErrorStatus.OK)
@@ -467,7 +470,8 @@ public class SrtcpCryptoContext
         }
 
         /* Encrypt the packet using Galois/Counter Mode encryption */
-        else if (policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION)
+        else if (policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION
+                || policy.getEncType() == SrtpPolicy.SM4GCM_ENCRYPTION)
         {
             /* N.B.: we have no way to indicate in policy that we want to send
              * non-encrypted RTCP authenticated with GCM, but that's not generally

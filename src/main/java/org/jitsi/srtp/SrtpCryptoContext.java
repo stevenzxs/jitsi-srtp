@@ -154,7 +154,7 @@ public class SrtpCryptoContext
         this.roc = roc;
 
         if (!sender && policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION &&
-            JitsiOpenSslProvider.isLoaded())
+                JitsiOpenSslProvider.isLoaded())
         {
             try
             {
@@ -555,7 +555,8 @@ public class SrtpCryptoContext
             // Authenticate the packet.
             if ((err = authenticatePacket(pkt)) == SrtpErrorStatus.OK)
             {
-                if (!skipDecryption || policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION)
+                if (!skipDecryption || policy.getEncType() == SrtpPolicy.AESGCM_ENCRYPTION
+                        || policy.getEncType() == SrtpPolicy.SM4GCM_ENCRYPTION)
                 {
                     switch (policy.getEncType())
                     {
@@ -566,6 +567,7 @@ public class SrtpCryptoContext
                         break;
 
                     case SrtpPolicy.AESGCM_ENCRYPTION:
+                    case SrtpPolicy.SM4GCM_ENCRYPTION:
                         err = processPacketAesGcm(pkt, false, skipDecryption);
                         break;
 
@@ -666,6 +668,7 @@ public class SrtpCryptoContext
             break;
 
         case SrtpPolicy.AESGCM_ENCRYPTION:
+        case SrtpPolicy.SM4GCM_ENCRYPTION:
             processPacketAesGcm(pkt, true, false);
             break;
 

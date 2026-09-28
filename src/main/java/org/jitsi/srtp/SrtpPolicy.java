@@ -39,6 +39,15 @@ public class SrtpPolicy
     public final static int AESGCM_ENCRYPTION = 5;
 
     /**
+     * Galois/Counter Mode SM4 cipher for the national-crypto SRTP profile.
+     *
+     * This is an experimental, private profile. It must not be advertised to
+     * peers until the DTLS use_srtp profile number and interoperability
+     * parameters have been approved.
+     */
+    public final static int SM4GCM_ENCRYPTION = 6;
+
+    /**
      * Counter Mode TwoFish Cipher
      */
     public final static int TWOFISH_ENCRYPTION = 3;
@@ -111,6 +120,14 @@ public class SrtpPolicy
     private boolean receiveReplayEnabled = true;
 
     /**
+     * Whether the Jitsi cryptex RTP header extension is enabled.
+     *
+     * This flag is retained for compatibility with the JVB media-transform
+     * API; it does not alter the SM4-GCM primitive itself.
+     */
+    private boolean cryptexEnabled;
+
+    /**
      * Construct a SrtpPolicy object based on given parameters.
      * This class acts as a storage class, so all the parameters are passed in
      * through this constructor.
@@ -135,6 +152,16 @@ public class SrtpPolicy
         this.authKeyLength = authKeyLength;
         this.authTagLength = authTagLength;
         this.saltKeyLength = saltKeyLength;
+    }
+
+    public boolean isCryptexEnabled()
+    {
+        return cryptexEnabled;
+    }
+
+    public void setCryptexEnabled(boolean cryptexEnabled)
+    {
+        this.cryptexEnabled = cryptexEnabled;
     }
 
     /**

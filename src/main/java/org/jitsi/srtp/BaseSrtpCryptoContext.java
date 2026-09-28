@@ -182,6 +182,18 @@ public class BaseSrtpCryptoContext
             cipher = new SrtpCipherGcm(Aes.createCipher("AES/GCM/NoPadding"));
             ivSize = 12;
             break;
+        case SrtpPolicy.SM4GCM_ENCRYPTION:
+            if (policy.getAuthTagLength() != 16)
+            {
+                throw new IllegalArgumentException("SM4-GCM SRTP requires a 16-octet auth tag");
+            }
+            if (policy.getEncKeyLength() != 16)
+            {
+                throw new IllegalArgumentException("SM4-GCM SRTP requires a 16-octet key");
+            }
+            cipher = new SrtpCipherGcm(Sm4.createCipher("SM4/GCM/NoPadding"));
+            ivSize = 12;
+            break;
         case SrtpPolicy.AESF8_ENCRYPTION:
             cipher = new SrtpCipherF8(Aes.createCipher("AES/ECB/NoPadding"));
             break;

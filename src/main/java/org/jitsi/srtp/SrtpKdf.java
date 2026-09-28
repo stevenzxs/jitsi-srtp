@@ -85,6 +85,10 @@ class SrtpKdf
             cipherCtr = new SrtpCipherCtr(Aes.createCipher("AES/CTR/NoPadding"));
             break;
 
+        case SrtpPolicy.SM4GCM_ENCRYPTION:
+            cipherCtr = new SrtpCipherCtr(Sm4.createCipher("SM4/CTR/NoPadding"));
+            break;
+
         case SrtpPolicy.TWOFISHF8_ENCRYPTION:
         case SrtpPolicy.TWOFISH_ENCRYPTION:
             cipherCtr = new SrtpCipherCtr(Cipher.getInstance("Twofish/CTR/NoPadding"));
